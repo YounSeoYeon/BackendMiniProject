@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.multi.nuguna.dao.ICommunityDAO">
+  	<resultMap id="comResult" type="com.multi.nuguna.model.CommunityVO">
+  		<result property="comNo" column="comNo" />
+  		<result property="comTitle" column="comTitle" />
+  		<result property="comComent" column="comComent" />
+  		<result property="comPwd" column="comPwd" />
+  		<result property="comDate" column="comDate" />
+  		<result property="comCount" column="comCount" />
+  		<result property="memId" column="memId" />
+  	</resultMap>
+  	  	
+  	<select id="showlist" resultMap="comResult">
+  		SELECT * FROM community
+  	</select>
+  	
+  	<insert id="insertListCom" parameterType="com.multi.nuguna.model.CommunityVO">
+  		INSERT INTO community(comTitle,comComent,comPwd,memId) 
+  		VALUES (#{comTitle},#{comComent},#{comPwd},#{memId})
+  	</insert>
+  	
+  	<select id="detailView" resultMap="comResult">
+  		SELECT * FROM community WHERE comNo=#{comNo}
+  	</select>
+ 	
+  </mapper>
